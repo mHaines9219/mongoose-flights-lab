@@ -4,10 +4,17 @@ module.exports = {
   new: newFlight,
   create,
   index,
+  show,
 };
 function newFlight(req, res) {
   res.render("flights/new", { errorMsg: "404" });
 }
+
+async function show(req, res) {
+  const flight = await Flight.findById(req.params.id);
+  res.render("flights/show", { airport: "Flight Airport", flight });
+}
+
 async function create(req, res) {
   // Retrieve form data from the request
   const { airline, airport, flightNo, departs } = req.body;
