@@ -26,6 +26,12 @@ const flightSchema = new Schema({
     type: Date,
   },
   destination: [destinationSchema],
+  tickets: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Ticket",
+    },
+  ],
 });
 
 module.exports = mongoose.model("Flight", flightSchema);

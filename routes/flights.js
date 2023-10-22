@@ -3,6 +3,7 @@ var router = express.Router();
 
 const flightCtrl = require("../controllers/flights");
 const flights = require("../controllers/flights");
+const ticketCtrl = require("../controllers/tickets");
 
 /* GET users listing. */
 router.get("/new", flightCtrl.new);

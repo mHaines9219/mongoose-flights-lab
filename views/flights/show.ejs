@@ -6,7 +6,7 @@
                 <th>Airline</th>
                 <th>Airport</th>
                 <th>Flight Number</th>
-                <th>Departs</th>
+                <!-- <th>Departs</th> -->
                 <th>Destination</th>
             </tr>
         </thead>
@@ -26,20 +26,35 @@
 
                 </td>
                 <td>
-                    <%= flight.destination %>
-                        <form id="add-destination" method="POST" action="/flights/<%= flight._id %>/destinations">
+                    Final Destination is: <% flight.destination.forEach(dest=> { %>
+                        <%= dest.airport %><br>
+                            <% }) %>
+                                <br>
+                                <form id="add-destination" method="POST"
+                                    action="/flights/<%= flight._id %>/destinations">
 
-                            <select name="airport">
-                                <option value="AUS">AUS</option>
-                                <option value="LAX">LAX</option>
-                                <option value="DFW">DFW</option>
-                                <option value="DEN">DEN</option>
-                                <option value="SAN">SAN</option>
-                            </select>
-                            <input type="submit" value="Add Destination">
-                            <input type="datetime-local" name="arrival" placeholder="Arrival">
+                                    <select name="airport">
+                                        <option value="AUS">AUS</option>
+                                        <option value="LAX">LAX</option>
+                                        <option value="DFW">DFW</option>
+                                        <option value="DEN">DEN</option>
+                                        <option value="SAN">SAN</option>
+                                    </select>
+                                    <input type="submit" value="Add Destination">
+                                    <input type="datetime-local" name="arrival" placeholder="Arrival">
 
-                        </form>
+                                </form>
+                                <a href="/tickets/<%= flight._id %>">Buy Ticket</a>
+                <td>
+                <td>
+                    PURCHASED TICKETS
+                    <% flight.tickets.forEach(ticket=> { %>
+                        <%= ticket.seat %> <br>
+                            <% }) %>
+                </td>
+
+
+                </td>
                 </td>
             </tr>
         </tbody>

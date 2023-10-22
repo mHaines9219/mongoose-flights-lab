@@ -13,7 +13,9 @@ function newFlight(req, res) {
 
 async function show(req, res) {
   try {
-    const flight = await Flight.findById(req.params.id).populate("destination");
+    const flight = await Flight.findById(req.params.id)
+      .populate("tickets")
+      .populate("destination");
     res.render("flights/show", { airport: "Flight Airport", flight });
   } catch (error) {
     // Handle any errors, e.g., by rendering an error page or redirecting to a relevant route
