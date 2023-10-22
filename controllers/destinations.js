@@ -5,16 +5,20 @@ module.exports = {
 };
 
 async function create(req, res) {
-  //get the movie by ID
-  const flight = await Flight.findById(req.params.id);
-  // push body of review to reviews array
-  flight.destination.push(req.body);
   try {
-    //save any changes made to movie doc
+    const flight = await Flight.findById(req.params.id);
+
+    console.log("Incoming data:", req.body); // Check incoming data
+
+    flight.destination.push(req.body);
+
     await flight.save();
+
+    console.log("Updated flight:", flight); // Check updated flight object
+
+    res.redirect(`/flights/${flight._id}`);
   } catch (err) {
     console.log(err);
+    res.render("error", { errorMsg: "Failed to add destination" });
   }
-  //respond to request, redir if save succesfull
-  res.redirect(`/flights/${flight._id}`);
 }

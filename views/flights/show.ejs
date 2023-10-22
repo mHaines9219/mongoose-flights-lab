@@ -27,8 +27,9 @@
                 </td>
                 <td>
                     <%= flight.destination %>
-                        <form id="add-destination" method="PUT" action="/flights/<%= flight._id %>?_method=PUT/">
-                            <select name="destination">
+                        <form id="add-destination" method="POST" action="/flights/<%= flight._id %>/destinations">
+
+                            <select name="airport">
                                 <option value="AUS">AUS</option>
                                 <option value="LAX">LAX</option>
                                 <option value="DFW">DFW</option>
@@ -36,6 +37,8 @@
                                 <option value="SAN">SAN</option>
                             </select>
                             <input type="submit" value="Add Destination">
+                            <input type="datetime-local" name="arrival" placeholder="Arrival">
+
                         </form>
                 </td>
             </tr>

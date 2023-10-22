@@ -48,6 +48,8 @@ async function index(req, res) {
   try {
     // Use Mongoose's populate to fetch flights with populated destinations
     const flights = await Flight.find({}).populate("destination");
+    console.log(flights);
+
     res.render("flights", { flights });
   } catch (error) {
     // Handle any errors, e.g., by rendering an error page or redirecting to a relevant route

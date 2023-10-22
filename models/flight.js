@@ -7,11 +7,7 @@ const destinationSchema = {
     enum: ["DEN", "AUS", "DFW", "LAX", "SAN"],
   },
   arrival: {
-    type: Number,
-    default: function () {
-      const currentYear = new Date().getFullYear();
-      return currentYear + 1; // Default to one year after the current year
-    },
+    type: Date,
   },
 };
 
@@ -27,11 +23,7 @@ const flightSchema = new Schema({
     required: true, // Regular expression for flight numbers between 10 and 9999
   },
   departs: {
-    type: Number,
-    default: function () {
-      const currentYear = new Date().getFullYear();
-      return currentYear + 1; // Default to one year after the current year
-    },
+    type: Date,
   },
   destination: [destinationSchema],
 });
