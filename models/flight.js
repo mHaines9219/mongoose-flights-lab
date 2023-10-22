@@ -7,7 +7,11 @@ const destinationSchema = {
     enum: ["DEN", "AUS", "DFW", "LAX", "SAN"],
   },
   arrival: {
-    type: Date,
+    type: Number,
+    default: function () {
+      const currentYear = new Date().getFullYear();
+      return currentYear + 1; // Default to one year after the current year
+    },
   },
 };
 

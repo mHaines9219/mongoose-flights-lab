@@ -23,12 +23,25 @@
                 </td>
                 <td>
                     <%= flight.departs %>
+
                 </td>
                 <td>
                     <%= flight.destination %>
+                        <form id="add-destination" method="PUT" action="/flights/<%= flight._id %>?_method=PUT/">
+                            <select name="destination">
+                                <option value="AUS">AUS</option>
+                                <option value="LAX">LAX</option>
+                                <option value="DFW">DFW</option>
+                                <option value="DEN">DEN</option>
+                                <option value="SAN">SAN</option>
+                            </select>
+                            <input type="submit" value="Add Destination">
+                        </form>
                 </td>
             </tr>
         </tbody>
     </table>
+
+
 
     <%- include('../partials/footer') %>
