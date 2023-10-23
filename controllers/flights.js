@@ -10,12 +10,15 @@ module.exports = {
 function newFlight(req, res) {
   res.render("flights/new", { errorMsg: "404" });
 }
-
 async function show(req, res) {
   try {
-    const flight = await Flight.findById(req.params.id)
-      .populate("tickets")
-      .populate("destination");
+    const flight = await Flight.findById(req.params.id).populate("destination");
+
+    // Sort destinations by arrival date/time
+    flight.destination.sort(
+      (a, b) => new Date(a.arrival) - new Date(b.arrival)
+    );
+
     res.render("flights/show", { airport: "Flight Airport", flight });
   } catch (error) {
     // Handle any errors, e.g., by rendering an error page or redirecting to a relevant route
